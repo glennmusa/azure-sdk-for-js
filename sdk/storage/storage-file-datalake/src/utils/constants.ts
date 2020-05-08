@@ -196,8 +196,14 @@ export const DevelopmentConnectionString = `DefaultEndpointsProtocol=http;Accoun
 
 // Mapping pairs to transform url from dfs endpoint to blob endpoint
 // Customize this value to add more mapping patterns
-export const ToBlobEndpointHostMappings = [["dfs.core.windows.net", "blob.core.windows.net"]];
+export const ToBlobEndpointHostMappings = [
+  ["dfs.core.windows.net", "blob.core.windows.net"],
+  ["dfs.core.usgovcloudapi.net", "blob.core.usgovcloudapi.net"]
+];
 
 // Mapping pairs to transform url from blob endpoint to dfs endpoint
 // Customize this value to add more mapping patterns
-export const ToDfsEndpointHostMappings = [["blob.core.windows.net", "dfs.core.windows.net"]];
+export const ToDfsEndpointHostMappings = [
+  ["blob.core.windows.net", "dfs.core.windows.net"],
+  ["blob.core.usgovcloudapi.net", "dfs.core.usgovcloudapi.net"]
+];

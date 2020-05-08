@@ -24,12 +24,13 @@ import { base64encode } from "./utils/utils.common";
  * Only handle known host name pair patterns, add more patterns into ToBlobEndpointHostMappings in constants.ts.
  *
  * Expected input and outputs:
- * http://account.blob.core.windows.net     => http://account.blob.core.windows.net
- * http://account.dfs.core.windows.net      => http://account.blob.core.windows.net
- * http://127.0.0.1:10000                   => http://127.0.0.1:10000
- * http://account.blob.core.windows.net/abc => http://account.blob.core.windows.net/abc
- * http://account.dfs.core.windows.net/abc  => http://account.blob.core.windows.net/abc
- * http://127.0.0.1:10000/abc               => http://127.0.0.1:10000/abc
+ * http://account.blob.core.windows.net      => http://account.blob.core.windows.net
+ * http://account.dfs.core.windows.net       => http://account.blob.core.windows.net
+ * http://127.0.0.1:10000                    => http://127.0.0.1:10000
+ * http://account.blob.core.windows.net/abc  => http://account.blob.core.windows.net/abc
+ * http://account.dfs.core.windows.net/abc   => http://account.blob.core.windows.net/abc
+ * http://127.0.0.1:10000/abc                => http://127.0.0.1:10000/abc
+ * http://account.dfs.core.usgovcloudapi.net => http://account.blob.core.usgovcloudapi.net
  *
  * @export
  * @param {string} url
@@ -59,12 +60,13 @@ export function toBlobEndpointUrl(url: string): string {
  * Only handle known host name pair patterns, add more patterns into ToDfsEndpointHostMappings in constants.ts.
  *
  * Expected input and outputs:
- * http://account.blob.core.windows.net     => http://account.dfs.core.windows.net
- * http://account.dfs.core.windows.net      => http://account.dfs.core.windows.net
- * http://127.0.0.1:10000                   => http://127.0.0.1:10000
- * http://account.blob.core.windows.net/abc => http://account.dfs.core.windows.net/abc
- * http://account.dfs.core.windows.net/abc  => http://account.dfs.core.windows.net/abc
- * http://127.0.0.1:10000/abc               => http://127.0.0.1:10000/abc
+ * http://account.blob.core.windows.net      => http://account.dfs.core.windows.net
+ * http://account.dfs.core.windows.net       => http://account.dfs.core.windows.net
+ * http://127.0.0.1:10000                    => http://127.0.0.1:10000
+ * http://account.blob.core.windows.net/abc  => http://account.dfs.core.windows.net/abc
+ * http://account.dfs.core.windows.net/abc   => http://account.dfs.core.windows.net/abc
+ * http://127.0.0.1:10000/abc                => http://127.0.0.1:10000/abc
+ * http://account.dfs.core.usgovcloudapi.net => http://account.blob.core.usgovcloudapi.net
  *
  * @export
  * @param {string} url
@@ -356,7 +358,7 @@ export function toAcl(aclString?: string): PathAccessControlItem[] {
 export function toAccessControlItemString(item: PathAccessControlItem): string {
   return `${item.defaultScope ? "default:" : ""}${item.accessControlType}:${
     item.entityId
-  }:${toRolePermissionsString(item.permissions)}`;
+    }:${toRolePermissionsString(item.permissions)}`;
 }
 
 export function toAclString(acl: PathAccessControlItem[]): string {
@@ -372,5 +374,5 @@ export function toPermissionsString(permissions: PathPermissions): string {
     permissions.group
   )}${toRolePermissionsString(permissions.other, permissions.stickyBit)}${
     permissions.extendedAcls ? "+" : ""
-  }`;
+    }`;
 }
